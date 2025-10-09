@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Sabores do Nordeste — Receitas</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{
+    --primary:#0b4f76;
+    --accent:#ff7a18;
+    --card-shadow: 0 10px 30px rgba(11,79,118,0.08);
+  }
+  body{ font-family: 'Nunito', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:#fff8f2; color:#123; }
+
+  header.site-header{
+    background: linear-gradient(90deg,var(--primary), #0d6b8f);
+    color:white;
+    position:sticky;
+    top:0;
+    z-index:50;
+  }
+  .brand{ font-weight:800; letter-spacing:0.6px; font-size:1.25rem; }
+
+  .hero{
+    background-image: url('carne-de-sol-com-mandioca-scaled.jpg');
+    background-size:cover;
+    background-position:center;
+    min-height:36vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    color:var(--primary);
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.0), rgba(255,255,255,0.85) 60%);
+  }
+  .hero .hero-inner{ position:relative; z-index:2; text-align:left; max-width:1100px; margin:3rem auto;padding:2rem; }
+
+  .headline { font-size:2.6rem; font-weight:800; color:var(--primary); margin-bottom:.6rem; animation: slideIn 900ms ease both; }
+  @keyframes slideIn{ from{ opacity:0; transform: translateY(12px);} to{opacity:1; transform:none;} }
+
+  .recipes-grid{ display:grid; grid-template-columns: repeat(1,1fr); gap:1.25rem; }
+  @media (min-width:768px){ .recipes-grid{ grid-template-columns: repeat(2,1fr); } }
+  @media (min-width:1100px){ .recipes-grid{ grid-template-columns: repeat(3,1fr); } }
+
+  .card{
+    background:linear-gradient(180deg, #ffffff, #fffaf6);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow: var(--card-shadow);
+    transform:translateZ(0);
+    transition: transform .45s cubic-bezier(.2,.9,.3,1), box-shadow .45s;
+    cursor:pointer;
+  }
+  .card:hover{ transform: translateY(-10px) scale(1.01); box-shadow: 0 30px 60px rgba(11,79,118,0.12); }
+  .thumb{ height:200px; width:100%; object-fit:cover; display:block; transition: transform .6s ease; }
+  .card:hover .thumb{ transform: scale(1.06) rotate(-0.2deg); }
+
+  .card-body{ padding:1.15rem 1.25rem; }
+  .kicker{ display:inline-block; background:var(--accent); color:white; padding:.25rem .6rem; border-radius:999px; font-weight:700; font-size:.75rem; margin-bottom:.6rem; }
+
+  .badge-row{ display:flex; gap:.6rem; margin-top:.6rem; flex-wrap:wrap; }
+  .badge{ background:#fff; border:1px solid rgba(11,79,118,0.06); padding:.35rem .6rem; border-radius:8px; font-size:.85rem; color:var(--primary); box-shadow:0 6px 18px rgba(11,79,118,0.04); }
+
+  footer{ text-align:center; padding:2rem 1rem; color:#4b5563; font-size:.95rem; }
+
+  /* Modal */
+  .modal-backdrop{ position:fixed; inset:0; background:rgba(2,6,23,0.6); display:flex; align-items:center; justify-content:center; z-index:60; padding:1.25rem; }
+  .modal-card{ width:100%; max-width:920px; background:white; border-radius:14px; overflow:hidden; box-shadow:0 30px 80px rgba(2,6,23,0.4); }
+  .modal-grid{ display:grid; grid-template-columns:1fr; gap:1rem; }
+  @media(min-width:900px){ .modal-grid{ grid-template-columns: 1fr 1fr; } }
+  .modal-thumb{ width:100%; height:320px; object-fit:cover; display:block; }
+
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <div class="brand text-white">SABORES DO NORDESTE</div>
+      <nav class="hidden md:flex gap-4 text-white/90 text-sm">
+        <a href="#" class="hover:underline">Receitas</a>
+        <a href="#" class="hover:underline">Tradicional</a>
+        <a href="#" class="hover:underline">Dicas</a>
+        <a href="#" class="hover:underline">Contato</a>
+      </nav>
+    </div>
+    <div class="text-white/90 text-sm">🍽️ Cultura & Sabor</div>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="headline">Receitas tradicionais da culinária nordestina</div>
+    <p class="text-gray-700 max-w-xl">Explore receitas autênticas com imagens reais das preparações. Toque em uma receita para ver ingredientes e modo de preparo — site inspirado no layout MODELO com efeitos modernos de animação.</p>
+    <div style="margin-top:1rem;">
+      <button onclick="scrollToGrid()" class="px-5 py-3 rounded-full font-semibold shadow-md" style="background:var(--accent); color:white">Ver Receitas</button>
+    </div>
+  </div>
+</section>
+
+<main class="max-w-7xl mx-auto px-6 py-12">
+  <!-- filtros -->
+  <div class="flex items-center justify-between mb-8">
+    <div class="text-sm text-gray-500">Filtrar por:</div>
+    <div class="flex gap-3">
+      <button class="px-4 py-2 rounded-full text-sm" onclick="filter('all')" id="btn-all" style="background:var(--primary); color:white">Todas</button>
+      <button class="px-4 py-2 rounded-full text-sm" onclick="filter('prato')">Pratos</button>
+      <button class="px-4 py-2 rounded-full text-sm" onclick="filter('doce')">Doces</button>
+      <button class="px-4 py-2 rounded-full text-sm" onclick="filter('bebida')">Bebidas</button>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <section id="grid" class="recipes-grid">
+    <!-- Card template: will be filled by JS but include static fallback -->
+    <!-- Vatapá -->
+    <article class="card fade-up delay-100" data-category="prato" onclick="openModal('Vatapá','vatapa.jfif', 'prato')">
+      <img class="thumb" src="vatapa.jfif" alt="Vatapá">
+      <div class="card-body">
+        <div class="kicker">BAHIA</div>
+        <h3 class="text-xl font-bold mt-1">Vatapá</h3>
+        <p class="text-gray-600 mt-2">Cremoso prato com camarão, pão, leite de coco e dendê, muito presente nas festas e nas praias.</p>
+        <div class="badge-row" style="margin-top:.9rem">
+          <div class="badge">⏱ 45 min</div>
+          <div class="badge">👥 4 porções</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Acarajé -->
+    <article class="card fade-up delay-200" data-category="prato" onclick="openModal('Acarajé','acaraje.jfif','prato')">
+      <img class="thumb" src="acaraje.jfif" alt="Acarajé">
+      <div class="card-body">
+        <div class="kicker">SALVADOR</div>
+        <h3 class="text-xl font-bold mt-1">Acarajé</h3>
+        <p class="text-gray-600 mt-2">Bolinho de feijão fradinho frito no dendê, recheado com vatapá e caruru — patrimônio cultural.</p>
+        <div class="badge-row" style="margin-top:.9rem">
+          <div class="badge">⏱ 60 min</div>
+          <div class="badge">👥 6 porções</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Carne de Sol com Macaxeira -->
+    <article class="card fade-up delay-300" data-category="prato" onclick="openModal('Carne de Sol com Macaxeira','carne-de-sol-com-macaxeira.jfif','prato')">
+      <img class="thumb" src="carne-de-sol-com-macaxeira.jfif" alt="Carne de Sol">
+      <div class="card-body">
+        <div class="kicker">SERTÃO</div>
+        <h3 class="text-xl font-bold mt-1">Carne de Sol com Macaxeira</h3>
+        <p class="text-gray-600 mt-2">Carne do sol desfiada, servida com macaxeira frita ou cozida — combinação típica nordestina.</p>
+        <div class="badge-row" style="margin-top:.9rem">
+          <div class="badge">⏱ 50 min</div>
+          <div class="badge">👥 5 porções</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Baião de Dois -->
+    <article class="card fade-up delay-100" data-category="prato" onclick="openModal('Baião de Dois','baiao_de_dois.jpg','prato')">
+      <img class="thumb" src="baiao_de_dois.jpg" alt="Baião de Dois">
+      <div class="card-body">
+        <div class="kicker">REGIONAL</div>
+        <h3 class="text-xl font-bold mt-1">Baião de Dois</h3>
+        <p class="text-gray-600 mt-2">Arroz e feijão verde com queijo coalho e carne seca — completo e cheio de sabor.</p>
+        <div class="badge-row" style="margin-top:.9rem">
+          <div class="badge">⏱ 40 min</div>
+          <div class="badge">👥 6 porções</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Bolo de Rolo -->
+    <article class="card fade-up delay-200" data-category="doce" onclick="openModal('Bolo de Rolo','bolo-de-rolo.jfif','doce')">
+      <img class="thumb" src="bolo-de-rolo.jfif" alt="Bolo de Rolo">
+      <div class="card-body">
+        <div class="kicker">PERNAMBUCO</div>
+        <h3 class="text-xl font-bold mt-1">Bolo de Rolo</h3>
+        <p class="text-gray-600 mt-2">Massa finíssima enrolada com doce de goiaba — herança cultural pernambucana.</p>
+        <div class="badge-row" style="margin-top:.9rem">
+          <div class="badge">⏱ 90 min</div>
+          <div class="badge">👥 8 porções</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Moqueca -->
+    <article class="card fade-up delay-300" data-category="prato" onclick="openModal('Moqueca de Peixe','Moqueca-de-peixe-com-frutos-do-mar.jpg','prato')">
+      <img class="thumb" src="Moqueca-de-peixe-com-frutos-do-mar.jpg" alt="Moqueca">
+      <div class="card-body">
+        <div class="kicker">LITORAL</div>
+        <h3 class="text-xl font-bold mt-1">Moqueca</h3>
+        <p class="text-gray-600 mt-2">Peixe cozido no leite de coco e azeite de dendê com pimentões e coentro.</p>
+        <div class="badge-row" style="margin-top:.9rem">
+          <div class="badge">⏱ 35 min</div>
+          <div class="badge">👥 4 porções</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Acarajé pequeno extra (variação) -->
+    <article class="card fade-up delay-100" data-category="prato" onclick="openModal('Bolinho de Acarajé (mini)','acaraje.jfif','prato')">
+      <img class="thumb" src="acaraje.jfif" alt="Acarajé mini">
+      <div class="card-body">
+        <div class="kicker">SABORES</div>
+        <h3 class="text-xl font-bold mt-1">Acarajé (variação)</h3>
+        <p class="text-gray-600 mt-2">Pequenas porções para degustação — ótima opção para festas e eventos.</p>
+        <div class="badge-row" style="margin-top:.9rem">
+          <div class="badge">⏱ 40 min</div>
+          <div class="badge">👥 8 porções</div>
+        </div>
+      </div>
+    </article>
+
+  </section>
+</main>
+
+<!-- Modal (invisible by default) -->
+<div id="modal" class="modal-backdrop" style="display:none" onclick="if(event.target===this) closeModal()">
+  <div class="modal-card">
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:1rem 1rem; border-bottom:1px solid #f2f2f2;">
+      <h3 id="modal-title" style="font-size:1.15rem; font-weight:800;"></h3>
+      <button onclick="closeModal()" style="background:#fff;border-radius:8px;padding:.4rem .6rem;border:1px solid #eee;">Fechar ✕</button>
+    </div>
+    <div style="padding:1rem;">
+      <div class="modal-grid">
+        <div>
+          <img id="modal-img" class="modal-thumb" src="" alt="">
+        </div>
+        <div>
+          <div id="modal-desc" style="padding:0.4rem 0;"></div>
+          <h4 style="font-weight:800;margin-top:.6rem">Ingredientes</h4>
+          <ul id="modal-ing" style="margin-top:.4rem; line-height:1.6;"></ul>
+          <h4 style="font-weight:800;margin-top:.6rem">Modo de preparo</h4>
+          <ol id="modal-instr" style="margin-top:.4rem; line-height:1.6;"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="max-w-4xl mx-auto">
+    © Sabores do Nordeste — Inspiração nas receitas tradicionais. Desenvolvido com carinho.
+  </div>
+</footer>
+
+<script>
+  // Simple scroll helper
+  function scrollToGrid(){ document.getElementById('grid').scrollIntoView({behavior:'smooth', block:'start'}); }
+
+  // Minimal recipe database (images already present in same folder)
+  const DB = {
+    "Vatapá": {
+      img:"vatapa.jfif",
+      desc:"Vatapá: prato cremoso com camarão, pão, óleo de dendê e leite de coco — muito presente nas festas da Bahia.",
+      ingredients:[ "500g camarão", "200g pão francês", "400ml leite de coco", "3 colheres de sopa dendê", "1 cebola", "Alho, sal e pimenta" ],
+      instr:[ "Hidrate o pão no leite", "Refogue cebola e alho no dendê", "Bata pão, castanhas e temperos no liquidificador", "Cozinhe até engrossar e ajuste o tempero" ]
+    },
+    "Acarajé": {
+      img:"acaraje.jfif",
+      desc:"Acarajé: bolinho frito no dendê feito com feijão fradinho, servido com vatapá e caruru.",
+      ingredients:[ "500g feijão fradinho", "1 cebola", "Sal", "Dendê para fritar", "Vatapá e caruru para rechear" ],
+      instr:[ "Deixe o feijão de molho e retire a casca", "Bata com cebola até formar pasta", "Modele e frite no dendê", "Abra e recheie" ]
+    },
+    "Carne de Sol com Macaxeira": {
+      img:"carne-de-sol-com-macaxeira.jfif",
+      desc:"Carne de sol desfiada servida com macaxeira frita ou cozida, acompanhada de manteiga de garrafa.",
+      ingredients:[ "1kg carne do sol", "1kg macaxeira", "Alho, cebola, sal", "Óleo ou manteiga de garrafa" ],
+      instr:[ "Dessalgue a carne e desfie", "Cozinhe ou frite a macaxeira", "Refogue a carne com temperos", "Sirva com macaxeira e queijo coalho" ]
+    },
+    "Baião de Dois": {
+      img:"baiao_de_dois.jpg",
+      desc:"Baião de Dois: arroz e feijão verdes com carne seca, linguiça e queijo coalho — prato farto e saboroso.",
+      ingredients:[ "2 xícaras arroz","1 xícara feijão verde","200g carne seca","100g linguiça","Queijo coalho","Cebola e coentro" ],
+      instr:[ "Cozinhe o feijão", "Refogue carnes e cebola", "Adicione arroz e feijão com caldo", "Cozinhe até secar e finalize com queijo" ]
+    },
+    "Bolo de Rolo": {
+      img:"bolo-de-rolo.jfif",
+      desc:"Bolo de Rolo: massa finíssima enrolada com doce de goiaba, patrimônio cultural de Pernambuco.",
+      ingredients:[ "6 ovos","200g açúcar","200g farinha","Doce de goiaba" ],
+      instr:[ "Bata ovos e açúcar","Acrescente farinha delicadamente","Asse em camadas finas","Espalhe goiabada e enrole" ]
+    },
+    "Moqueca de Peixe": {
+      img:"Moqueca-de-peixe-com-frutos-do-mar.jpg",
+      desc:"Moqueca: peixe cozido com leite de coco, dendê, pimentões e coentro — servido na panela de barro.",
+      ingredients:[ "1kg peixe","400ml leite de coco","3 colheres dendê","Tomate, pimentão, cebola","Coentro" ],
+      instr:[ "Tempere peixe","Refogue cebola no dendê","Adicione legumes e peixe","Cozinhe com leite de coco e finalize" ]
+    },
+    "Bolinho de Acarajé (mini)": {
+      img:"acaraje.jfif",
+      desc:"Acarajé: bolinho frito no dendê feito com feijão fradinho, servido com vatapá e caruru.",
+      ingredients:[ "250g feijão fradinho", "1/2 cebola", "Sal", "Dendê para fritar", "Vatapá e caruru para rechear" ],
+      instr:[ "Deixe o feijão de molho e retire a casca", "Bata com cebola até formar pasta", "Modele e frite no dendê", "Abra e recheie" ]
+    },
+
+  };
+
+  // modal open/close
+  function openModal(title, img, category){
+    const data = DB[title] || {img:img, desc:"", ingredients:[], instr:[]};
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-img').src = data.img || img;
+    document.getElementById('modal-desc').textContent = data.desc || '';
+    const ing = document.getElementById('modal-ing'); ing.innerHTML = '';
+    (data.ingredients||[]).forEach(i=>{ const li=document.createElement('li'); li.textContent=i; ing.appendChild(li); });
+    const ins = document.getElementById('modal-instr'); ins.innerHTML='';
+    (data.instr||[]).forEach(s=>{ const li=document.createElement('li'); li.textContent=s; ins.appendChild(li); });
+    document.getElementById('modal').style.display='flex';
+    document.body.style.overflow='hidden';
+  }
+  function closeModal(){ document.getElementById('modal').style.display='none'; document.body.style.overflow='auto'; }
+
+  // filter control
+  function filter(cat){
+    const cards = document.querySelectorAll('[data-category]');
+    cards.forEach(c=>{
+      if(cat==='all' || cat===c.dataset.category) c.style.display='block';
+      else c.style.display='none';
+    });
+    // update buttons styles
+    document.querySelectorAll('button').forEach(btn=> btn.style.boxShadow='none');
+    // highlight the active button
+  }
+
+  // small animation trigger on load
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.querySelectorAll('.fade-up').forEach(el=> el.style.animationPlayState='running');
+  });
+
+</script>
+</body>
+</html>
