@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dicas</title>
+  <title>Paçoca de Carne Seca</title>
   <style>
     body {
       font-family: Nunito, Arial, sans-serif;
@@ -11,6 +11,7 @@
       background: #fff8f2;
       color: #123;
       padding: 20px;
+      scroll-behavior: smooth;
     }
 
     header {
@@ -40,6 +41,7 @@
 
     h1 {
       margin-bottom: 20px;
+      color: #0b4f76;
     }
 
     ul {
@@ -48,7 +50,7 @@
 
     li {
       margin-bottom: 10px;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     strong {
@@ -63,6 +65,7 @@
       overflow: hidden;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
     }
 
     .video-container iframe {
@@ -74,6 +77,54 @@
       border: 0;
     }
 
+    .descricao, .dicas {
+      background: #fff;
+      padding: 16px 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .descricao strong {
+      color: #d35400;
+    }
+
+    .dicas h2 {
+      color: #0b4f76;
+      margin-top: 0;
+    }
+
+    /* --- Botão Voltar ao Topo --- */
+    #voltarTopo {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #0d6b8f;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 16px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+      display: none;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.3s ease, transform 0.2s ease, opacity 0.3s;
+    }
+
+    #voltarTopo span {
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    #voltarTopo:hover {
+      background: #0b4f76;
+      transform: scale(1.05);
+    }
+
+    /* Oculta o texto “Topo” em telas pequenas */
     @media (max-width: 600px) {
       body {
         padding: 10px;
@@ -87,6 +138,18 @@
       header nav a {
         margin: 8px 6px;
         display: inline-block;
+      }
+
+      #voltarTopo {
+        border-radius: 50%;
+        width: 46px;
+        height: 46px;
+        padding: 0;
+        justify-content: center;
+      }
+
+      #voltarTopo span.texto {
+        display: none;
       }
     }
   </style>
@@ -103,7 +166,8 @@
   </header>
 
   <main>
-    <h1>Receita de Paçoca Seca</h1>
+    <h1>Receita de Paçoca de Carne Seca</h1>
+
     <div class="video-container">
       <iframe src="https://www.youtube.com/embed/IumuoukSOjA?si=xwbYDnslhW6iAfoV"
         title="YouTube video player"
@@ -112,6 +176,55 @@
         allowfullscreen>
       </iframe>
     </div>
+
+    <div class="descricao">
+      <p>
+        A <strong>paçoca de carne seca</strong> é um clássico da culinária nordestina,
+        feita com carne seca desfiada, farinha de mandioca e temperos marcantes.
+        De sabor intenso e textura rústica, é um prato que remete às origens sertanejas do Brasil.
+      </p>
+      <p>
+        Tradicionalmente preparada no pilão, a paçoca é símbolo da simplicidade e da
+        criatividade do povo nordestino, transformando ingredientes básicos em um prato cheio de sabor e história.
+      </p>
+    </div>
+
+    <div class="dicas">
+      <h2>💡 Dicas de Preparo</h2>
+      <ul>
+        <li><strong>Carne seca:</strong> dessalgue bem e desfie com cuidado após o cozimento.</li>
+        <li><strong>Toste a farinha:</strong> aqueça levemente antes de misturar para realçar o sabor.</li>
+        <li><strong>Temperos:</strong> use alho, cebola e pimenta-do-reino; um toque de coentro realça o sabor regional.</li>
+        <li><strong>Mistura:</strong> vá adicionando a farinha aos poucos até alcançar a textura desejada — nem seca demais, nem úmida.</li>
+        <li><strong>Finalização:</strong> sirva com arroz, feijão-verde ou até mesmo como recheio de tapioca.</li>
+        <li><strong>Tradição:</strong> se tiver um pilão, use-o para dar o toque autêntico nordestino à receita!</li>
+      </ul>
+    </div>
   </main>
+
+  <!-- Botão Voltar ao Topo -->
+  <button id="voltarTopo" title="Voltar ao topo">
+    <span>↑</span>
+    <span class="texto">Topo</span>
+  </button>
+
+  <script>
+    // Exibe o botão ao rolar a página
+    const botao = document.getElementById("voltarTopo");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        botao.style.display = "flex";
+        botao.style.opacity = "1";
+      } else {
+        botao.style.opacity = "0";
+        setTimeout(() => botao.style.display = "none", 300);
+      }
+    });
+
+    // Rolagem suave até o topo
+    botao.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
 </body>
 </html>
