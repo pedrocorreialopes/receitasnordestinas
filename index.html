@@ -13,409 +13,266 @@
       --accent:#ff7a18;
       --card-shadow: 0 10px 30px rgba(11,79,118,0.08);
     }
-    html,body{ height:100%; }
+
     body{
-      font-family: 'Nunito', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      font-family:'Nunito',system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
       background:#fff8f2; color:#123;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
 
-    /* Header */
     header.site-header{
-      background: linear-gradient(90deg,var(--primary), #0d6b8f);
-      color:white;
-      position:sticky;
-      top:0;
-      z-index:50;
-      box-shadow: 0 4px 18px rgba(2,6,23,0.08);
+      background:linear-gradient(90deg,var(--primary),#0d6b8f);
+      color:white;position:sticky;top:0;z-index:50;
+      box-shadow:0 4px 18px rgba(2,6,23,0.08);
     }
-    .brand{ font-weight:800; letter-spacing:0.6px; font-size:1.125rem; }
+    .brand{font-weight:800;letter-spacing:0.6px;font-size:1.125rem;}
 
-    /* Hero */
     .hero{
-      background-image: url('imagens/bannertopo.jpg');
-      background-size:cover;
-      background-position:center;
-      min-height:36vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      position:relative;
-      color:var(--primary);
+      background:url('imagens/bannertopo.jpg') center/cover no-repeat;
+      min-height:36vh;display:flex;align-items:center;justify-content:center;
+      position:relative;color:var(--primary);
     }
     .hero::after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.0), rgba(255,255,255,0.92) 60%);
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,0.9)60%);
     }
-    .hero .hero-inner{ position:relative; z-index:2; text-align:left; max-width:1100px; margin:2.5rem auto;padding:1.5rem; }
+    .hero .hero-inner{position:relative;z-index:2;text-align:left;max-width:1100px;margin:2.5rem auto;padding:1.5rem;}
+    .headline{font-size:2rem;font-weight:800;color:var(--primary);margin-bottom:.5rem;}
 
-    .headline { font-size:2rem; font-weight:800; color:var(--primary); margin-bottom:.5rem; animation: slideIn 900ms ease both; }
-    @keyframes slideIn{ from{ opacity:0; transform: translateY(12px);} to{opacity:1; transform:none;} }
-
-    /* Grid / cards */
-    .recipes-grid{ display:grid; grid-template-columns: repeat(1,1fr); gap:1rem; }
-    @media (min-width:640px){ .recipes-grid{ grid-template-columns: repeat(2,1fr); } }
-    @media (min-width:1100px){ .recipes-grid{ grid-template-columns: repeat(3,1fr); } }
+    .recipes-grid{display:grid;grid-template-columns:repeat(1,1fr);gap:1rem;}
+    @media(min-width:640px){.recipes-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(min-width:1100px){.recipes-grid{grid-template-columns:repeat(3,1fr);}}
 
     .card{
-      background:linear-gradient(180deg, #ffffff, #fffaf6);
-      border-radius:12px;
-      overflow:hidden;
-      box-shadow: var(--card-shadow);
-      transform:translateZ(0);
-      transition: transform .35s cubic-bezier(.2,.9,.3,1), box-shadow .35s;
-      cursor:pointer;
-      display:flex;
-      flex-direction:column;
-      height:100%;
+      background:linear-gradient(180deg,#ffffff,#fffaf6);
+      border-radius:12px;overflow:hidden;box-shadow:var(--card-shadow);
+      transition:transform .35s,box-shadow .35s;cursor:pointer;display:flex;flex-direction:column;
     }
-    .card:focus{ outline:3px solid rgba(255,122,24,0.15); outline-offset:4px; }
-    .card:hover{ transform: translateY(-8px) scale(1.01); box-shadow: 0 26px 50px rgba(11,79,118,0.12); }
-    .thumb{ height:220px; width:100%; object-fit:cover; display:block; transition: transform .6s ease; }
-    .card:hover .thumb{ transform: scale(1.05) rotate(-0.2deg); }
+    .card:hover{transform:translateY(-8px)scale(1.01);box-shadow:0 26px 50px rgba(11,79,118,0.12);}
+    .thumb{height:220px;width:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+    .card:hover .thumb{transform:scale(1.05)rotate(-0.2deg);}
 
-    .card-body{ padding:1rem; display:flex; flex-direction:column; gap:.6rem; flex:1; }
-    .kicker{ display:inline-block; background:var(--accent); color:white; padding:.25rem .6rem; border-radius:999px; font-weight:700; font-size:.75rem; margin-bottom:.2rem; }
+    .card-body{padding:1rem;display:flex;flex-direction:column;gap:.6rem;flex:1;}
+    .kicker{display:inline-block;background:var(--accent);color:white;padding:.25rem .6rem;border-radius:999px;font-weight:700;font-size:.75rem;}
+    .badge-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:auto;}
+    .badge{background:#fff;border:1px solid rgba(11,79,118,0.06);padding:.35rem .6rem;border-radius:8px;font-size:.85rem;color:var(--primary);box-shadow:0 6px 18px rgba(11,79,118,0.04);}
 
-    .badge-row{ display:flex; gap:.6rem; margin-top:auto; flex-wrap:wrap; }
-    .badge{ background:#fff; border:1px solid rgba(11,79,118,0.06); padding:.35rem .6rem; border-radius:8px; font-size:.85rem; color:var(--primary); box-shadow:0 6px 18px rgba(11,79,118,0.04); }
+    .filter-btn{transition:all .18s;border-radius:999px;padding:.55rem .9rem;font-weight:600;font-size:.9rem;}
+    .filter-btn[aria-pressed="true"]{box-shadow:0 10px 30px rgba(11,79,118,0.12);background:var(--accent);color:white;}
 
-    /* Filters */
-    .filter-btn{ transition: all .18s; border-radius:999px; padding:.55rem .9rem; font-weight:600; font-size:.9rem; }
-    .filter-btn[aria-pressed="true"]{ box-shadow: 0 10px 30px rgba(11,79,118,0.12); transform:translateY(-2px); background:var(--accent); color:white; border:none; }
+    [data-category]{transition:opacity .25s ease;}
+
+    /* Fade-up na entrada */
+    .fade-up{opacity:0;transform:translateY(10px);animation:fadeUpAnim .6s ease forwards;}
+    @keyframes fadeUpAnim{to{opacity:1;transform:translateY(0);}}
+
+    /* Zoom suave nas imagens */
+    .thumb{opacity:0;transform:scale(0.96);transition:opacity .6s ease,transform .6s ease;}
+    .thumb.show{opacity:1;transform:scale(1);}
 
     /* Modal */
-    .modal-backdrop{ position:fixed; inset:0; background:rgba(2,6,23,0.6); display:flex; align-items:center; justify-content:center; z-index:60; padding:1rem; }
-    .modal-card{ width:100%; max-width:920px; background:white; border-radius:12px; overflow:hidden; box-shadow:0 30px 80px rgba(2,6,23,0.4); max-height:92vh; display:flex; flex-direction:column; }
-    .modal-grid{ display:grid; grid-template-columns:1fr; gap:1rem; padding:1rem; overflow:auto; }
-    @media(min-width:900px){ .modal-grid{ grid-template-columns: 1fr 1fr; } }
-    .modal-thumb{ width:100%; height:320px; object-fit:cover; display:block; border-radius:8px; }
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:60;padding:1rem;}
+    .modal-card{width:100%;max-width:900px;background:white;border-radius:14px;overflow:auto;max-height:90vh;}
+    .modal-grid{display:grid;grid-template-columns:1fr;gap:1rem;padding:1rem;}
+    @media(min-width:900px){.modal-grid{grid-template-columns:1fr 1fr;}}
 
-    /* Small screens tweaks */
-    @media (max-width:480px){
-      .hero{ min-height:30vh; }
-      .hero-inner{ padding:1rem; margin:1.25rem auto; }
-      .headline{ font-size:1.4rem; }
-      .thumb{ height:160px; }
-      .modal-thumb{ height:200px; }
-    }
-
-    footer{ text-align:center; padding:2rem 1rem; color:#4b5563; font-size:.95rem; }
-
-    /* Accessibility helpers */
-    .sr-only{ position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap; clip-path: inset(50%); border:0; padding:0; margin:-1px; }
+    footer{text-align:center;padding:2rem 1rem;color:#4b5563;font-size:.95rem;}
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between py-4">
-        <div class="flex items-center gap-4">
-          <div class="brand text-white">SABORES DO NORDESTE</div>
-
-          <!-- Desktop nav -->
-          <nav id="mainNav" class="hidden md:flex gap-4 text-white/90 text-sm">
-            <a href="receitas.html" class="hover:underline">Video-Receitas</a>
-            <a href="tradicional.html" class="hover:underline">Culinária Nordestina</a>
-            <a href="dicas.html" class="hover:underline">Dicas</a>
-            <a href="contato.html" class="hover:underline">Contato</a>
-          </nav>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <div class="hidden sm:block text-white/90 text-sm">🍽️ Cultura & Sabor</div>
-
-          <!-- Mobile hamburger -->
-          <button id="btnMenu" aria-label="Abrir menu" aria-expanded="false" class="md:hidden p-2 rounded-md ring-0 focus:outline-none focus:ring-2 focus:ring-white/50">
-            <svg id="iconOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-            <svg id="iconClose" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-          </button>
-        </div>
+<header class="site-header">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between py-4">
+      <div class="flex items-center gap-4">
+        <div class="brand text-white">SABORES DO NORDESTE</div>
+        <nav id="mainNav" class="hidden md:flex gap-4 text-white/90 text-sm">
+          <a href="receitas.html" class="hover:underline">Video-Receitas</a>
+          <a href="tradicional.html" class="hover:underline">Culinária Nordestina</a>
+          <a href="dicas.html" class="hover:underline">Dicas</a>
+          <a href="contato.html" class="hover:underline">Contato</a>
+        </nav>
       </div>
-    </div>
-
-    <!-- Mobile menu (dropdown) -->
-    <div id="mobileMenu" class="md:hidden hidden bg-gradient-to-b from-[rgba(11,79,118,0.95)] to-[rgba(13,107,143,0.9)] text-white">
-      <div class="px-4 pt-2 pb-4 space-y-1">
-        <a href="receitas.html" class="block py-2 px-2 rounded hover:bg-white/10">Video-Receitas</a>
-        <a href="tradicional.html" class="block py-2 px-2 rounded hover:bg-white/10">Culinária Nordestina</a>
-        <a href="dicas.html" class="block py-2 px-2 rounded hover:bg-white/10">Dicas</a>
-        <a href="contato.html" class="block py-2 px-2 rounded hover:bg-white/10">Contato</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="headline">Receitas tradicionais da culinária nordestina</div>
-      <p class="text-gray-700 max-w-xl">Explore receitas autênticas com imagens reais das preparações. Toque em uma receita para ver ingredientes e modo de preparo.</p>
-      <div class="mt-4">
-        <button onclick="scrollToGrid()" class="px-5 py-3 rounded-full font-semibold shadow-md" style="background:var(--accent); color:white">Ver Receitas</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Main content -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
-      <div class="text-sm text-gray-500">Filtrar por:</div>
-      <div class="flex gap-3 flex-wrap">
-        <button id="btn-all" class="filter-btn" role="button" aria-pressed="true" onclick="filter('all', this)" style="background:var(--primary); color:white">Todas</button>
-        <button id="btn-prato" class="filter-btn" role="button" aria-pressed="false" onclick="filter('prato', this)">Pratos</button>
-        <button id="btn-doce" class="filter-btn" role="button" aria-pressed="false" onclick="filter('doce', this)">Doces</button>
-        <button id="btn-bebida" class="filter-btn" role="button" aria-pressed="false" onclick="filter('bebida', this)">Bebidas</button>
-      </div>
-    </div>
-
-    <section id="grid" class="recipes-grid" aria-live="polite">
-      <!-- Cards: mantive os mesmos itens e imagens do seu original -->
-      <article class="card fade-up" data-category="prato" tabindex="0" onclick="openModal('Vatapá')" onkeypress="if(event.key==='Enter') openModal('Vatapá')">
-        <img class="thumb" src="imagens/vatapa.jfif" alt="Vatapá">
-        <div class="card-body">
-          <div class="kicker">BAHIA</div>
-          <h3 class="text-xl font-bold mt-1">Vatapá</h3>
-          <p class="text-gray-600 mt-1">Cremoso prato com camarão, pão, leite de coco e dendê, muito presente nas festas e nas praias.</p>
-          <div class="badge-row mt-3">
-            <div class="badge">⏱ 45 min</div>
-            <div class="badge">👥 4 porções</div>
-          </div>
-        </div>
-      </article>
-
-      <article class="card fade-up" data-category="prato" tabindex="0" onclick="openModal('Acarajé')" onkeypress="if(event.key==='Enter') openModal('Acarajé')">
-        <img class="thumb" src="imagens/acaraje.jfif" alt="Acarajé">
-        <div class="card-body">
-          <div class="kicker">SALVADOR</div>
-          <h3 class="text-xl font-bold mt-1">Acarajé</h3>
-          <p class="text-gray-600 mt-1">Bolinho de feijão fradinho frito no dendê, recheado com vatapá e caruru — patrimônio cultural.</p>
-          <div class="badge-row mt-3">
-            <div class="badge">⏱ 60 min</div>
-            <div class="badge">👥 6 porções</div>
-          </div>
-        </div>
-      </article>
-
-      <article class="card fade-up" data-category="prato" tabindex="0" onclick="openModal('Carne de Sol com Macaxeira')" onkeypress="if(event.key==='Enter') openModal('Carne de Sol com Macaxeira')">
-        <img class="thumb" src="imagens/carne-de-sol-com-macaxeira.jfif" alt="Carne de Sol com Macaxeira">
-        <div class="card-body">
-          <div class="kicker">SERTÃO</div>
-          <h3 class="text-xl font-bold mt-1">Carne de Sol com Macaxeira</h3>
-          <p class="text-gray-600 mt-1">Carne do sol desfiada, servida com macaxeira frita ou cozida — combinação típica nordestina.</p>
-          <div class="badge-row mt-3">
-            <div class="badge">⏱ 50 min</div>
-            <div class="badge">👥 5 porções</div>
-          </div>
-        </div>
-      </article>
-
-      <article class="card fade-up" data-category="prato" tabindex="0" onclick="openModal('Baião de Dois')" onkeypress="if(event.key==='Enter') openModal('Baião de Dois')">
-        <img class="thumb" src="imagens/baiao_de_dois.jpg" alt="Baião de Dois">
-        <div class="card-body">
-          <div class="kicker">REGIONAL</div>
-          <h3 class="text-xl font-bold mt-1">Baião de Dois</h3>
-          <p class="text-gray-600 mt-1">Arroz e feijão verde com queijo coalho e carne seca — completo e cheio de sabor.</p>
-          <div class="badge-row mt-3">
-            <div class="badge">⏱ 40 min</div>
-            <div class="badge">👥 6 porções</div>
-          </div>
-        </div>
-      </article>
-
-      <article class="card fade-up" data-category="doce" tabindex="0" onclick="openModal('Bolo de Rolo')" onkeypress="if(event.key==='Enter') openModal('Bolo de Rolo')">
-        <img class="thumb" src="imagens/bolo-de-rolo.jfif" alt="Bolo de Rolo">
-        <div class="card-body">
-          <div class="kicker">PERNAMBUCO</div>
-          <h3 class="text-xl font-bold mt-1">Bolo de Rolo</h3>
-          <p class="text-gray-600 mt-1">Massa finíssima enrolada com doce de goiaba — herança cultural pernambucana.</p>
-          <div class="badge-row mt-3">
-            <div class="badge">⏱ 90 min</div>
-            <div class="badge">👥 8 porções</div>
-          </div>
-        </div>
-      </article>
-
-      <article class="card fade-up" data-category="prato" tabindex="0" onclick="openModal('Moqueca de Peixe')" onkeypress="if(event.key==='Enter') openModal('Moqueca de Peixe')">
-        <img class="thumb" src="imagens/Moqueca-de-peixe-com-frutos-do-mar.jpg" alt="Moqueca">
-        <div class="card-body">
-          <div class="kicker">LITORAL</div>
-          <h3 class="text-xl font-bold mt-1">Moqueca</h3>
-          <p class="text-gray-600 mt-1">Peixe cozido no leite de coco e azeite de dendê com pimentões e coentro.</p>
-          <div class="badge-row mt-3">
-            <div class="badge">⏱ 35 min</div>
-            <div class="badge">👥 4 porções</div>
-          </div>
-        </div>
-      </article>
-
-      <article class="card fade-up" data-category="prato" tabindex="0" onclick="openModal('Paçoca de Carne Seca')" onkeypress="if(event.key==='Enter') openModal('Paçoca de Carne Seca')">
-        <img class="thumb" src="imagens/pacoca-de-carne-seca.jpeg" alt="Paçoca de Carne Seca">
-        <div class="card-body">
-          <div class="kicker">SABORES</div>
-          <h3 class="text-xl font-bold mt-1">Paçoca de Carne Seca</h3>
-          <p class="text-gray-600 mt-1">Prato rústico com carne de sol desfiada e pilada com farinha de mandioca, típico do sertão nordestino.</p>
-          <div class="badge-row mt-3">
-            <div class="badge">⏱ 60 min</div>
-            <div class="badge">👥 6 porções</div>
-          </div>
-        </div>
-      </article>
-
-    </section>
-  </main>
-
-  <!-- Modal -->
-  <div id="modal" class="modal-backdrop" style="display:none" onclick="if(event.target===this) closeModal()" aria-hidden="true">
-    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <div style="display:flex; justify-content:space-between; align-items:center; padding:1rem 1rem; border-bottom:1px solid #f2f2f2;">
-        <h3 id="modal-title" style="font-size:1.15rem; font-weight:800;"></h3>
-        <button id="modalClose" onclick="closeModal()" style="background:#fff;border-radius:8px;padding:.45rem .7rem;border:1px solid #eee;">Fechar ✕</button>
-      </div>
-      <div style="padding:0;">
-        <div class="modal-grid">
-          <div style="padding:1rem;">
-            <img id="modal-img" class="modal-thumb" src="" alt="">
-          </div>
-          <div style="padding:1rem; overflow:auto;">
-            <p id="modal-desc" style="padding:0.4rem 0; color:#334155;"></p>
-
-            <h4 style="font-weight:800;margin-top:.6rem">Ingredientes</h4>
-            <ul id="modal-ing" style="margin-top:.4rem; line-height:1.6; color:#374151;"></ul>
-
-            <h4 style="font-weight:800;margin-top:.6rem">Modo de preparo</h4>
-            <ol id="modal-instr" style="margin-top:.4rem; line-height:1.6; color:#374151;"></ol>
-          </div>
-        </div>
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:block text-white/90 text-sm">🍽️ Cultura & Sabor</div>
+        <button id="btnMenu" aria-label="Abrir menu" aria-expanded="false" class="md:hidden p-2 rounded-md focus:ring-2 focus:ring-white/50">
+          <svg id="iconOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="iconClose" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
       </div>
     </div>
   </div>
-
-  <footer>
-    <div class="max-w-4xl mx-auto px-4 sm:px-6">
-      © Sabores do Nordeste — Inspiração nas receitas tradicionais. Desenvolvido com carinho.
+  <div id="mobileMenu" class="md:hidden hidden bg-gradient-to-b from-[rgba(11,79,118,0.95)] to-[rgba(13,107,143,0.9)] text-white">
+    <div class="px-4 pt-2 pb-4 space-y-1">
+      <a href="receitas.html" class="block py-2 px-2 rounded hover:bg-white/10">Video-Receitas</a>
+      <a href="tradicional.html" class="block py-2 px-2 rounded hover:bg-white/10">Culinária Nordestina</a>
+      <a href="dicas.html" class="block py-2 px-2 rounded hover:bg-white/10">Dicas</a>
+      <a href="contato.html" class="block py-2 px-2 rounded hover:bg-white/10">Contato</a>
     </div>
-  </footer>
+  </div>
+</header>
 
-  <script>
-    // Simple scroll helper
-    function scrollToGrid(){ document.getElementById('grid').scrollIntoView({behavior:'smooth', block:'start'}); }
+<section class="hero">
+  <div class="hero-inner">
+    <div class="headline">Receitas tradicionais da culinária nordestina</div>
+    <p class="text-gray-700 max-w-xl">Explore receitas autênticas com imagens reais das preparações. Toque em uma receita para ver ingredientes e modo de preparo.</p>
+    <div class="mt-4">
+      <button onclick="scrollToGrid()" class="px-5 py-3 rounded-full font-semibold shadow-md" style="background:var(--accent);color:white">Ver Receitas</button>
+    </div>
+  </div>
+</section>
 
-    // Minimal recipe database (mantive o mesmo conteúdo)
-    const DB = {
-      "Vatapá": {
-        img:"imagens/vatapa.jfif",
-        desc:"Vatapá: prato cremoso com camarão, pão, óleo de dendê e leite de coco — muito presente nas festas da Bahia.",
-        ingredients:[ "500g camarão", "200g pão francês", "400ml leite de coco", "3 colheres de sopa dendê", "1 cebola", "Alho, sal e pimenta" ],
-        instr:[ "Hidrate o pão no leite", "Refogue cebola e alho no dendê", "Bata pão, castanhas e temperos no liquidificador", "Cozinhe até engrossar e ajuste o tempero" ]
-      },
-      "Acarajé": {
-        img:"imagens/acaraje.jfif",
-        desc:"Acarajé: bolinho frito no dendê feito com feijão fradinho, servido com vatapá e caruru.",
-        ingredients:[ "500g feijão fradinho", "1 cebola", "Sal", "Dendê para fritar", "Vatapá e caruru para rechear" ],
-        instr:[ "Deixe o feijão de molho e retire a casca", "Bata com cebola até formar pasta", "Modele e frite no dendê", "Abra e recheie" ]
-      },
-      "Carne de Sol com Macaxeira": {
-        img:"imagens/carne-de-sol-com-macaxeira.jfif",
-        desc:"Carne de sol desfiada servida com macaxeira frita ou cozida, acompanhada de manteiga de garrafa.",
-        ingredients:[ "1kg carne do sol", "1kg macaxeira", "Alho, cebola, sal", "Óleo ou manteiga de garrafa" ],
-        instr:[ "Dessalgue a carne e desfie", "Cozinhe ou frite a macaxeira", "Refogue a carne com temperos", "Sirva com macaxeira e queijo coalho" ]
-      },
-      "Baião de Dois": {
-        img:"imagens/baiao_de_dois.jpg",
-        desc:"Baião de Dois: arroz e feijão verdes com carne seca, linguiça e queijo coalho — prato farto e saboroso.",
-        ingredients:[ "2 xícaras arroz","1 xícara feijão verde","200g carne seca","100g linguiça","Queijo coalho","Cebola e coentro" ],
-        instr:[ "Cozinhe o feijão", "Refogue carnes e cebola", "Adicione arroz e feijão com caldo", "Cozinhe até secar e finalize com queijo" ]
-      },
-      "Bolo de Rolo": {
-        img:"imagens/bolo-de-rolo.jfif",
-        desc:"Bolo de Rolo: massa finíssima enrolada com doce de goiaba, patrimônio cultural de Pernambuco.",
-        ingredients:[ "6 ovos","200g açúcar","200g farinha","Doce de goiaba" ],
-        instr:[ "Bata ovos e açúcar","Acrescente farinha delicadamente","Asse em camadas finas","Espalhe goiabada e enrole" ]
-      },
-      "Moqueca de Peixe": {
-        img:"imagens/Moqueca-de-peixe-com-frutos-do-mar.jpg",
-        desc:"Moqueca: peixe cozido com leite de coco, dendê, pimentões e coentro — servido na panela de barro.",
-        ingredients:[ "1kg peixe","400ml leite de coco","3 colheres dendê","Tomate, pimentão, cebola","Coentro" ],
-        instr:[ "Tempere peixe","Refogue cebola no dendê","Adicione legumes e peixe","Cozinhe com leite de coco e finalize" ]
-      },
-      "Paçoca de Carne Seca": {
-        img:"imagens/pacoca-de-carne-seca.jpeg",
-        desc:"Prato rústico com carne de sol desfiada e pilada com farinha de mandioca, típico do sertão nordestino.",
-        ingredients:[ "500g de carne de sol", "3 xícaras de farinha de mandioca", "2 cebolas grandes", "6 dentes de alho", "Cheiro verde" ],
-        instr:[ "Dessalgue e cozinhe a carne de sol até ficar macia.", "Desfie a carne bem fina ou passe no processador.", "Refogue o alho, a cebola e a pimenta.", "Adicione a carne desfiada e refogue bem.", "Adicione a farinha aos poucos, mexendo sempre.", "Finalize com cheiro verde e manteiga de garrafa." ]
-      }
-    };
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+    <div class="text-sm text-gray-500">Filtrar por:</div>
+    <div class="flex flex-wrap gap-3">
+      <button id="btn-all" class="filter-btn" role="button" aria-pressed="true" onclick="filter('all', this)">Todas</button>
+      <button class="filter-btn" role="button" aria-pressed="false" onclick="filter('prato', this)">Pratos</button>
+      <button class="filter-btn" role="button" aria-pressed="false" onclick="filter('doce', this)">Doces</button>
+      <button class="filter-btn" role="button" aria-pressed="false" onclick="filter('bebida', this)">Bebidas</button>
+    </div>
+  </div>
 
-    // Modal open/close
-    function openModal(title){
-      const data = DB[title] || {img:"", desc:"", ingredients:[], instr:[]};
-      const modal = document.getElementById('modal');
-      document.getElementById('modal-title').textContent = title;
-      const imgEl = document.getElementById('modal-img');
-      imgEl.src = data.img || '';
-      imgEl.alt = title;
-      document.getElementById('modal-desc').textContent = data.desc || '';
-      const ing = document.getElementById('modal-ing'); ing.innerHTML = '';
-      (data.ingredients||[]).forEach(i=>{ const li=document.createElement('li'); li.textContent=i; ing.appendChild(li); });
-      const ins = document.getElementById('modal-instr'); ins.innerHTML='';
-      (data.instr||[]).forEach(s=>{ const li=document.createElement('li'); li.textContent=s; ins.appendChild(li); });
-      modal.style.display='flex';
-      modal.setAttribute('aria-hidden','false');
-      document.body.style.overflow='hidden';
-      // set focus to close button for accessibility
-      document.getElementById('modalClose').focus();
+  <section id="grid" class="recipes-grid">
+    <!-- Cards mantidos -->
+    <article class="card" data-category="prato" onclick="openModal('Vatapá')">
+      <img class="thumb" src="imagens/vatapa.jfif" alt="Vatapá">
+      <div class="card-body">
+        <div class="kicker">BAHIA</div>
+        <h3 class="text-xl font-bold mt-1">Vatapá</h3>
+        <p class="text-gray-600 mt-1">Cremoso prato com camarão, pão, leite de coco e dendê.</p>
+        <div class="badge-row mt-3"><div class="badge">⏱ 45 min</div><div class="badge">👥 4 porções</div></div>
+      </div>
+    </article>
+
+    <article class="card" data-category="prato" onclick="openModal('Acarajé')">
+      <img class="thumb" src="imagens/acaraje.jfif" alt="Acarajé">
+      <div class="card-body">
+        <div class="kicker">SALVADOR</div>
+        <h3 class="text-xl font-bold mt-1">Acarajé</h3>
+        <p class="text-gray-600 mt-1">Bolinho de feijão fradinho frito no dendê, recheado com vatapá e caruru.</p>
+        <div class="badge-row mt-3"><div class="badge">⏱ 60 min</div><div class="badge">👥 6 porções</div></div>
+      </div>
+    </article>
+
+    <article class="card" data-category="prato" onclick="openModal('Baião de Dois')">
+      <img class="thumb" src="imagens/baiao_de_dois.jpg" alt="Baião de Dois">
+      <div class="card-body">
+        <div class="kicker">REGIONAL</div>
+        <h3 class="text-xl font-bold mt-1">Baião de Dois</h3>
+        <p class="text-gray-600 mt-1">Arroz e feijão verde com queijo coalho e carne seca.</p>
+        <div class="badge-row mt-3"><div class="badge">⏱ 40 min</div><div class="badge">👥 6 porções</div></div>
+      </div>
+    </article>
+
+    <article class="card" data-category="doce" onclick="openModal('Bolo de Rolo')">
+      <img class="thumb" src="imagens/bolo-de-rolo.jfif" alt="Bolo de Rolo">
+      <div class="card-body">
+        <div class="kicker">PERNAMBUCO</div>
+        <h3 class="text-xl font-bold mt-1">Bolo de Rolo</h3>
+        <p class="text-gray-600 mt-1">Massa finíssima enrolada com doce de goiaba.</p>
+        <div class="badge-row mt-3"><div class="badge">⏱ 90 min</div><div class="badge">👥 8 porções</div></div>
+      </div>
+    </article>
+
+    <article class="card" data-category="prato" onclick="openModal('Moqueca de Peixe')">
+      <img class="thumb" src="imagens/Moqueca-de-peixe-com-frutos-do-mar.jpg" alt="Moqueca de Peixe">
+      <div class="card-body">
+        <div class="kicker">LITORAL</div>
+        <h3 class="text-xl font-bold mt-1">Moqueca de Peixe</h3>
+        <p class="text-gray-600 mt-1">Peixe cozido no leite de coco e azeite de dendê.</p>
+        <div class="badge-row mt-3"><div class="badge">⏱ 35 min</div><div class="badge">👥 4 porções</div></div>
+      </div>
+    </article>
+  </section>
+</main>
+
+<!-- Modal -->
+<div id="modal" class="modal-backdrop" style="display:none" onclick="if(event.target===this) closeModal()">
+  <div class="modal-card">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem;border-bottom:1px solid #eee;">
+      <h3 id="modal-title" style="font-size:1.2rem;font-weight:800;"></h3>
+      <button onclick="closeModal()" style="background:#fff;border-radius:8px;padding:.4rem .6rem;border:1px solid #ddd;">✕</button>
+    </div>
+    <div class="modal-grid">
+      <div><img id="modal-img" class="w-full rounded-md" alt=""></div>
+      <div>
+        <p id="modal-desc" class="mb-2 text-gray-700"></p>
+        <h4 class="font-bold mt-2">Ingredientes</h4>
+        <ul id="modal-ing" class="list-disc pl-5"></ul>
+        <h4 class="font-bold mt-3">Modo de preparo</h4>
+        <ol id="modal-instr" class="list-decimal pl-5"></ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    © Sabores do Nordeste — Inspiração nas receitas tradicionais. Desenvolvido com carinho.
+  </div>
+</footer>
+
+<script>
+function scrollToGrid(){document.getElementById('grid').scrollIntoView({behavior:'smooth'});}
+
+function filter(cat,btn){
+  const cards=document.querySelectorAll('[data-category]');
+  const dur=250;
+  document.querySelectorAll('.filter-btn').forEach(b=>{
+    b.setAttribute('aria-pressed','false');
+    b.style.background='';b.style.color='';
+  });
+  if(btn){btn.setAttribute('aria-pressed','true');btn.style.background='var(--accent)';btn.style.color='white';}
+  cards.forEach(c=>{
+    if(cat!=='all'&&c.dataset.category!==cat){
+      c.style.opacity='0';setTimeout(()=>c.style.display='none',dur);
+    }else{
+      c.style.display='block';setTimeout(()=>c.style.opacity='1',10);
     }
-    function closeModal(){
-      const modal = document.getElementById('modal');
-      modal.style.display='none';
-      modal.setAttribute('aria-hidden','true');
-      document.body.style.overflow='auto';
-    }
-    document.addEventListener('keydown', function(e){
-      if(e.key==='Escape') closeModal();
-    });
+  });
+}
 
-    // Filter control (with active state)
-    function filter(cat, btn){
-      const cards = document.querySelectorAll('[data-category]');
-      cards.forEach(c=>{
-        if(cat==='all' || cat===c.dataset.category) c.style.display='block';
-        else c.style.display='none';
-      });
-      // update aria-pressed for buttons
-      document.querySelectorAll('.filter-btn').forEach(b=> b.setAttribute('aria-pressed','false') );
-      if(btn) btn.setAttribute('aria-pressed','true');
-    }
+const btnMenu=document.getElementById('btnMenu');
+const mobileMenu=document.getElementById('mobileMenu');
+const iconOpen=document.getElementById('iconOpen');
+const iconClose=document.getElementById('iconClose');
+btnMenu.addEventListener('click',()=>{
+  const exp=btnMenu.getAttribute('aria-expanded')==='true';
+  btnMenu.setAttribute('aria-expanded',!exp);
+  mobileMenu.classList.toggle('hidden');
+  iconOpen.classList.toggle('hidden');
+  iconClose.classList.toggle('hidden');
+});
 
-    // Mobile menu toggle
-    const btnMenu = document.getElementById('btnMenu');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const iconOpen = document.getElementById('iconOpen');
-    const iconClose = document.getElementById('iconClose');
-    btnMenu.addEventListener('click', ()=>{
-      const expanded = btnMenu.getAttribute('aria-expanded') === 'true';
-      btnMenu.setAttribute('aria-expanded', String(!expanded));
-      mobileMenu.classList.toggle('hidden');
-      iconOpen.classList.toggle('hidden');
-      iconClose.classList.toggle('hidden');
-    });
+document.addEventListener('DOMContentLoaded',()=>{
+  const cards=document.querySelectorAll('.card');
+  cards.forEach((card,i)=>{
+    card.classList.add('fade-up');
+    card.style.animationDelay=`${i*100}ms`;
+    const img=card.querySelector('.thumb');
+    setTimeout(()=>img.classList.add('show'),300+i*100);
+  });
+});
 
-    // small animation trigger on load
-    document.addEventListener('DOMContentLoaded', ()=>{
-      document.querySelectorAll('.fade-up').forEach((el, idx)=> {
-        el.style.animation = `fadeUp 450ms ease ${idx*60}ms both`;
-      });
-      const style = document.createElement('style');
-      style.innerHTML = `@keyframes fadeUp{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;} }`;
-      document.head.appendChild(style);
-    });
-  </script>
+const DB={
+  "Vatapá":{img:"imagens/vatapa.jfif",desc:"Vatapá: prato cremoso com camarão, pão, óleo de dendê e leite de coco.",ingredients:["500g camarão","200g pão francês","400ml leite de coco","3 colheres dendê","1 cebola"],instr:["Hidrate o pão","Refogue cebola e alho","Bata os ingredientes","Cozinhe até engrossar"]},
+  "Acarajé":{img:"imagens/acaraje.jfif",desc:"Acarajé: bolinho frito no dendê feito com feijão fradinho, servido com vatapá e caruru.",ingredients:["500g feijão fradinho","1 cebola","Sal","Dendê"],instr:["Deixe o feijão de molho","Bata com cebola","Modele e frite","Recheie com vatapá"]},
+  "Baião de Dois":{img:"imagens/baiao_de_dois.jpg",desc:"Baião de Dois: arroz e feijão verdes com carne seca e queijo coalho.",ingredients:["2 xícaras arroz","1 xícara feijão verde","200g carne seca"],instr:["Cozinhe o feijão","Refogue a carne","Misture e finalize com queijo"]},
+  "Bolo de Rolo":{img:"imagens/bolo-de-rolo.jfif",desc:"Bolo de Rolo: massa finíssima com goiabada.",ingredients:["6 ovos","200g açúcar","200g farinha","Doce de goiaba"],instr:["Bata ovos e açúcar","Acrescente farinha","Asse e enrole com goiabada"]},
+  "Moqueca de Peixe":{img:"imagens/Moqueca-de-peixe-com-frutos-do-mar.jpg",desc:"Moqueca: peixe cozido com leite de coco e dendê.",ingredients:["1kg peixe","400ml leite de coco","3 colheres dendê"],instr:["Tempere peixe","Refogue","Adicione leite de coco","Cozinhe até engrossar"]}
+};
+
+function openModal(title){
+  const d=DB[title];if(!d)return;
+  document.getElementById('modal-title').textContent=title;
+  document.getElementById('modal-img').src=d.img;
+  document.getElementById('modal-desc').textContent=d.desc;
+  const ul=document.getElementById('modal-ing');ul.innerHTML='';d.ingredients.forEach(i=>ul.innerHTML+=`<li>${i}</li>`);
+  const ol=document.getElementById('modal-instr');ol.innerHTML='';d.instr.forEach(i=>ol.innerHTML+=`<li>${i}</li>`);
+  document.getElementById('modal').style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modal').style.display='none';document.body.style.overflow='auto';}
+</script>
 </body>
 </html>
