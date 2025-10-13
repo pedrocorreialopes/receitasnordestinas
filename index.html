@@ -174,16 +174,45 @@
       </div>
     </article>
 
+    <article class="card" data-category="prato" onclick="openModal('Paçoca de Carne Seca')">
+      <img class="thumb" src="imagens/pacoca.jpg" alt="Paçoca de Carne Seca">
+      <div class="card-body">
+        <div class="kicker">REGIONAL</div>
+        <h3 class="text-xl font-bold mt-1">Paçoca de Carne Seca</h3>
+        <p class="text-gray-600 mt-1">Prato rústico com carne de sol desfiada e pilada com farinha de mandioca, típico do sertão nordestino.</p>
+        <div class="badge-row mt-3"><div class="badge">⏱ 60 min</div><div class="badge">👥 6 porções</div></div>
+      </div>
+    </article>
+
+    <article class="card" data-category="doce" onclick="openModal('Cocada')">
+      <img class="thumb" src="imagens/cocada.jpg" alt="Cocada">
+      <div class="card-body">
+        <div class="kicker">REGIONAL</div>
+        <h3 class="text-xl font-bold mt-1">Cocada Branca</h3>
+        <p class="text-gray-600 mt-1">Doce tradicional feito com coco ralado e açúcar, derrete na boca</p>
+        <div class="badge-row mt-3"><div class="badge">⏱ 30 min</div><div class="badge">👥 20 porções</div></div>
+      </div>
+    </article>
+
+    <article class="card" data-category="prato" onclick="openModal('Carne de Sol com Macaxeira')">
+      <img class="thumb" src="imagens/carnesol.jpg" alt="Carne de Sol com Macaxeira">
+      <div class="card-body">
+        <div class="kicker">PIAUÍ</div>
+        <h3 class="text-xl font-bold mt-1">Carne de Sol com Macaxeira</h3>
+        <p class="text-gray-600 mt-1">Doce tradicional feito com coco ralado e açúcar, derrete na boca</p>
+        <div class="badge-row mt-3"><div class="badge">⏱ 30 min</div><div class="badge">👥 6 porções</div></div>
+      </div>
+    </article>
+
     <article class="card" data-category="bebida" onclick="openModal('Cajuína')">
       <img class="thumb" src="imagens/cajuina.jpeg" alt="Cajuína">
       <div class="card-body">
         <div class="kicker">PIAUÍ</div>
         <h3 class="text-xl font-bold mt-1">Cajuína</h3>
         <p class="text-gray-600 mt-1">Bebida típica do Piauí feita com suco de caju clarificado</p>
-        <div class="badge-row mt-3"><div class="badge">⏱ 20 min</div><div class="badge">👥 6 porções</div></div>
+        <div class="badge-row mt-3"><div class="badge">⏱ 30 min</div><div class="badge">👥 20 porções</div></div>
       </div>
     </article>
-
 
     <article class="card" data-category="prato" onclick="openModal('Moqueca de Peixe')">
       <img class="thumb" src="imagens/Moqueca-de-peixe-com-frutos-do-mar.jpg" alt="Moqueca de Peixe">
@@ -270,6 +299,9 @@ const DB={
   "Acarajé":{img:"imagens/acaraje.jfif",desc:"Acarajé: bolinho frito no dendê feito com feijão fradinho, servido com vatapá e caruru.",ingredients:["500g feijão fradinho","1 cebola","Sal","Dendê"],instr:["Deixe o feijão de molho","Bata com cebola","Modele e frite","Recheie com vatapá"]},
   "Baião de Dois":{img:"imagens/baiao_de_dois.jpg",desc:"Baião de Dois: arroz e feijão verdes com carne seca e queijo coalho.",ingredients:["2 xícaras arroz","1 xícara feijão verde","200g carne seca"],instr:["Cozinhe o feijão","Refogue a carne","Misture e finalize com queijo"]},
   "Bolo de Rolo":{img:"imagens/bolo-de-rolo.jfif",desc:"Bolo de Rolo: massa finíssima com goiabada.",ingredients:["6 ovos","200g açúcar","200g farinha","Doce de goiaba"],instr:["Bata ovos e açúcar","Acrescente farinha","Asse e enrole com goiabada"]},
+  "Paçoca de Carne Seca":{img:"imagens/pacoca.jpg",desc:"Prato rústico com carne de sol desfiada e pilada com farinha de mandioca, típico do sertão nordestino.",ingredients:["500g de carne de sol","3 xícaras de farinha de mandioca","2 cebolas grandes", "6 dentes de alho", "Cheiro verde", "Pimenta de cheiro", "Manteiga de garrafa"],instr:["Dessalgue e cozinhe a carne de sol até ficar macia.","Desfie a carne bem fina ou passe no processador.","Refogue o alho, a cebola e a pimenta.","Refogue o alho, a cebola e a pimenta.","Refogue o alho, a cebola e a pimenta.", "Finalize com cheiro verde e manteiga de garrafa."]},
+  "Cocada":{img:"imagens/cocada.jpg",desc:"Cocada Branca: Doce tradicional feito com coco ralado e açúcar.",ingredients:["500g de coco fresco ralado","500g de açúcar","200ml de água","1 pitada de sal","Cravo da índia (opcional)"],instr:["Leve ao fogo o açúcar e a água até formar calda.","Adicione o coco ralado e o sal.","Mexa sempre em fogo médio até secar.","Quando começar a soltar do fundo da panela, está pronto.","Despeje em superfície untada ou faça bolinhas.", "Deixe esfriar e endurecer antes de servir."]},
+  "Carne de Sol com Macaxeira":{img:"imagens/carnesol.jpg",desc:"Cajuína: bebida feita de caju clarificado.",ingredients:["2kg de caju maduros","Açúcar a gosto (opcional)","Gelo para servir"],instr:["Lave bem os cajus maduros","Esprema os cajus para extrair o suco","Coe o suco várias vezes para remover impurezas.","Deixe o suco descansar na geladeira por algumas horas.","Sirva bem gelado."]},
   "Cajuína":{img:"imagens/cajuina.jpeg",desc:"Cajuína: bebida feita de caju clarificado.",ingredients:["2kg de caju maduros","Açúcar a gosto (opcional)","Gelo para servir"],instr:["Lave bem os cajus maduros","Esprema os cajus para extrair o suco","Coe o suco várias vezes para remover impurezas.","Deixe o suco descansar na geladeira por algumas horas.","Sirva bem gelado."]},
   "Moqueca de Peixe":{img:"imagens/Moqueca-de-peixe-com-frutos-do-mar.jpg",desc:"Moqueca: peixe cozido com leite de coco e dendê.",ingredients:["1kg peixe","400ml leite de coco","3 colheres dendê"],instr:["Tempere peixe","Refogue","Adicione leite de coco","Cozinhe até engrossar"]}
 };
