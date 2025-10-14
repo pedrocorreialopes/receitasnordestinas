@@ -1,0 +1,251 @@
+/* =========================================
+   🎨 Variáveis e Cores
+========================================= */
+:root {
+  --primary: #0b4f76;
+  --accent: #ff7a18;
+  --card-shadow: 0 10px 30px rgba(11, 79, 118, 0.08);
+}
+
+/* =========================================
+   🧩 Base Global
+========================================= */
+body {
+  font-family: 'Nunito', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: #fff8f2;
+  color: #123;
+}
+
+/* =========================================
+   🧭 Cabeçalho
+========================================= */
+header.site-header {
+  background: linear-gradient(90deg, var(--primary), #0d6b8f);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 4px 18px rgba(2, 6, 23, 0.08);
+}
+
+.brand {
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  font-size: 1.125rem;
+}
+
+/* =========================================
+   🌅 Hero / Banner
+========================================= */
+.hero {
+  background: url('imagens/bannertopo.jpg') center/cover no-repeat;
+  min-height: 36vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: var(--primary);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.9) 60%);
+}
+
+.hero .hero-inner {
+  position: relative;
+  z-index: 2;
+  text-align: left;
+  max-width: 1100px;
+  margin: 2.5rem auto;
+  padding: 1.5rem;
+}
+
+.headline {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+/* =========================================
+   🍲 Cards de Receitas
+========================================= */
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+}
+
+.card {
+  background: linear-gradient(180deg, #ffffff, #fffaf6);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.35s, box-shadow 0.35s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 26px 50px rgba(11, 79, 118, 0.12);
+}
+
+.thumb {
+  height: 220px;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+.thumb.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.card:hover .thumb {
+  transform: scale(1.05) rotate(-0.2deg);
+}
+
+/* =========================================
+   📦 Conteúdo dos Cards
+========================================= */
+.card-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+}
+
+.kicker {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.badge-row {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.badge {
+  background: #fff;
+  border: 1px solid rgba(11, 79, 118, 0.06);
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--primary);
+  box-shadow: 0 6px 18px rgba(11, 79, 118, 0.04);
+}
+
+/* =========================================
+   🔘 Botões e Filtros
+========================================= */
+.filter-btn {
+  transition: all 0.18s;
+  border-radius: 999px;
+  padding: 0.55rem 0.9rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.filter-btn[aria-pressed="true"] {
+  box-shadow: 0 10px 30px rgba(11, 79, 118, 0.12);
+  background: var(--accent);
+  color: white;
+}
+
+/* =========================================
+   💫 Animações e Transições
+========================================= */
+[data-category] {
+  transition: opacity 0.25s ease;
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeUpAnim 0.6s ease forwards;
+}
+
+@keyframes fadeUpAnim {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   🪟 Modal
+========================================= */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+  padding: 1rem;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 900px;
+  background: white;
+  border-radius: 14px;
+  overflow: auto;
+  max-height: 90vh;
+}
+
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* =========================================
+   📱 Responsividade
+========================================= */
+@media (min-width: 640px) {
+  .recipes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .modal-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1100px) {
+  .recipes-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* =========================================
+   ⚓ Rodapé
+========================================= */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #4b5563;
+  font-size: 0.95rem;
+}
